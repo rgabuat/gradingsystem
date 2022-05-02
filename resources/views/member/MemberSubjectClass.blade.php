@@ -5,35 +5,36 @@
 <div class="card">
     <div class="card-body">
    
-    <h2 class="text-center">Assigned Subjects</h2>
-    <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success">ASSIGN NEW SUBJECT</a>
+    <h2 class="text-center">Enrolled Students</h2>
+    <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success">ASSIGN NEW STUDENT</a>
     <table class="table">
             <thead>
                 <tr>
                     <th>S/N</th>
-                    <th>Name</th>
-                    <th>Code</th>
-                    <th>Description</th>
+                    <th>Student Id</th>
+                    <th>Firstname</th>
+                    <th>Middlename</th>
+                    <th>Lastname</th>
                     <th>Type</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($handled_subjects as $subject)
+                @foreach($classlists as $class)
                 <tr>
-
-                    <td>{{ $subject['id']}}</td>
-                    <td>{{ $subject['subj_name']}}</td>
-                    <td>{{ $subject['subj_code']}}</td>
-                    <td>{{ $subject['subj_description']}}</td>
-                    <td>{{ $subject['subj_type']}}</td>
+                    <td>{{ $class['id']}}</td>
+                    <td>{{ $class['students'][0]['std_number']}}</td>
+                    <td>{{ $class['students'][0]['first_name']}}</td>
+                    <td>{{ $class['students'][0]['middle_name']}}</td>
+                    <td>{{ $class['students'][0]['last_name']}}</td>
+                    <td>{{ $class['subj_type']}}</td>
                     <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-expanded="false">
                         <span class="fas fa-align-right"></span>
                         </button>
                             <div class="dropdown-menu" role="menu" style="">
-                            <a class="dropdown-item" href="{{ url('/member/'.$subject['subj_instructor'].'/subject/'.$subject['id'].'/class') }}" ><span class="fas fa-users mr-2"></span>View Class</a>
+                            <a class="dropdown-item" href="{{ url('/member/'.Request::segment(2) .'/subject/'.$class['students'][0]['id'].'/student/'.$class['id']) }}" ><span class="fas fa-award mr-2"></span>View Grades</a>
                                 <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deactivate"><span class="fas fa-times mr-2"></span>Remove Subject</a>
                                 <!-- <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#activate"><span class="fas fa-eye mr-2"></span>Activate student</a> -->
                             </div>

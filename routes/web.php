@@ -84,7 +84,8 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('/lists', [MemberController::class,'index'])->name('member/lists');
         Route::get('/create', [MemberController::class,'create'])->name('member/create');
         Route::get('/view/subjects/{mid}',[MemberController::class,'get_subjects'])->name('member/view/subjects/{mid}');
-        Route::get('/{iid}/subject/{sid}/class',[MemberController::class,'get_subjects'])->name('member/{iid}/subject/{sid}/class');
+        Route::get('/{iid}/subject/{sid}/class',[MemberController::class,'get_subjects_class'])->name('member/{iid}/subject/{sid}/class');
+        Route::get('/{iid}/subject/{sid}/student/{id}',[MemberController::class,'get_subjects_grade'])->name('member/{iid}/subject/{sid}/student/{id}');
         Route::get('/edit/{sid}', [MemberController::class,'edit'])->name('member/edit/{sid}');
         Route::post('/store', [MemberController::class,'store'])->name('member/store');
         Route::post('/udpate/{sid}', [MemberController::class,'updated'])->name('member/update/{sid}');
