@@ -33,6 +33,7 @@ class Classlists extends Model
         return $this->hasMany(Subjects::class,'id','subject_id');
     }
 
+
     public function semester()
     {
         return $this->hasMany(Semesters::class,'id','sem_id');

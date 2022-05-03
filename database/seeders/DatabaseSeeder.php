@@ -21,61 +21,63 @@ class DatabaseSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
 
-        //subject
-        Permission::create(['name' => 'view subject']);
-        Permission::create(['name' => 'add subject']);
-        Permission::create(['name' => 'edit subject']);
-        Permission::create(['name' => 'delete subject']);
-        Permission::create(['name' => 'publish subject']);
-        Permission::create(['name' => 'deactivate subject']);
-        Permission::create(['name' => 'activate subject']);
+        $adminPermissions = [
+            'view subject',
+            'add subject',
+            'edit subject',
+            'delete subject',
+            'publish subject',
+            'deactivate subject',
+            'activate subject',
+            'view user',
+            'add user',
+            'edit user',
+            'delete user',
+            'view student',
+            'add student',
+            'edit student',
+            'delete student',
+            'deactivate student',
+            'add semester',
+            'delete semeter',
+            'view semester',
+            'edit semester',
+            'delete semester',
+            'view grade',
+            'input grade',
+            'edit grade',
+            'submit grade',
+        ];
 
-        //user
-        Permission::create(['name' => 'view user']);
-        Permission::create(['name' => 'add user']);
-        Permission::create(['name' => 'edit user']);
-        Permission::create(['name' => 'delete user']);
-        Permission::create(['name' => 'publish user']);
-        Permission::create(['name' => 'deactivate user']);
-        Permission::create(['name' => 'activate user']);
+        foreach($adminPermissions as $permission)
+        {
+            Permission::create(['name' => $permission]);
+        }
 
-        //grades
-        Permission::create(['name' => 'view grade']);
-        Permission::create(['name' => 'add grade']);
-        Permission::create(['name' => 'edit grade']);
-        Permission::create(['name' => 'delete grade']);
-        Permission::create(['name' => 'submit grade']);
-        Permission::create(['name' => 'deactivate grade']);
-        Permission::create(['name' => 'activate grade']);
+        
+        $registrarPermissions = [
+            'view subject',
+            'add subject',
+            'edit subject',
+            'delete subject',
+            'view student',
+            'add student', 
+            'edit student',
+            'delete student',
+            'add semester',
+            'edit semester',
+            'view semester',
+            'delete semester',
+        ];
 
-         //semester
-         Permission::create(['name' => 'view semester']);
-         Permission::create(['name' => 'add semester']);
-         Permission::create(['name' => 'edit semester']);
-         Permission::create(['name' => 'delete semester']);
-         Permission::create(['name' => 'publish semester']);
-         Permission::create(['name' => 'deactivate semester']);
-         Permission::create(['name' => 'activate semester']);
+        $intructorPermissions = [
+            'view student',
+            'view subject',
+            'input grade',
+            'view grade',  
+        ];
 
-          //student
-          Permission::create(['name' => 'view student']);
-          Permission::create(['name' => 'add student']);
-          Permission::create(['name' => 'edit student']);
-          Permission::create(['name' => 'delete student']);
-          Permission::create(['name' => 'publish student']);
-          Permission::create(['name' => 'deactivate student']);
-          Permission::create(['name' => 'activate student']);
-
-
-          //permission
-          Permission::create(['name' => 'view permission']);
-          Permission::create(['name' => 'add permission']);
-          Permission::create(['name' => 'edit permission']);
-          Permission::create(['name' => 'delete permission']);
-          Permission::create(['name' => 'publish permission']);
-          Permission::create(['name' => 'deactivate permission']);
-          Permission::create(['name' => 'activate permission']);
-
+        $role0 = Role::create(['name' => 'Super Admin']);
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'IT admin']);
         $role3 = Role::create(['name' => 'registrar']);
@@ -83,11 +85,7 @@ class DatabaseSeeder extends Seeder
         $role5 = Role::create(['name' => 'clerk']);
         $role5 = Role::create(['name' => 'guest']);
 
-
-
-        
-        
-
+    
         $crse1 = \App\Models\Courses::create([
             'crse_name'  => 'crse1', 
         ]);
@@ -255,7 +253,7 @@ class DatabaseSeeder extends Seeder
             'sem_id'  => '1'
         ]);
 
-        $user = \App\Models\User::create([
+        $admin = \App\Models\User::create([
             'user_id' => 'administrator',
             'first_name' => 'system',
             'last_name' => 'administrator',
@@ -272,8 +270,51 @@ class DatabaseSeeder extends Seeder
             'dept_id' => '1',
             'is_active' => 1
         ]);
-        $role1->givePermissionTo(Permission::all());
-        $user->assignRole($role1);
+        $role1->givePermissionTo($adminPermissions);
+        $admin->assignRole($role1);
+
+        $instructor = \App\Models\User::create([
+            'user_id' => 'faculty',
+            'first_name' => 'instructor',
+            'last_name' => 'faculty',
+            'middle_name' => 'null',
+            'suffix' => 'null',
+            'title' => 'instructor',
+            'gender' => 'null',
+            'birthday' => 'null',
+            'email' => 'instructor@example.com',
+            'username' => 'instructor',
+            'password' => Hash::make('instructor'),
+            'role' => $role3->name,
+            'post_id' => '8',
+            'dept_id' => '1',
+            'is_active' => 1
+        ]);
+        $role3->givePermissionTo($intructorPermissions);
+        $instructor->assignRole($role3);
+
+
+        $registrar = \App\Models\User::create([
+            'user_id' => 'registrar',
+            'first_name' => 'registrar',
+            'last_name' => 'admin',
+            'middle_name' => 'null',
+            'suffix' => 'null',
+            'title' => 'registrar',
+            'gender' => 'null',
+            'birthday' => 'null',
+            'email' => 'registrar@example.com',
+            'username' => 'registrar',
+            'password' => Hash::make('registrar'),
+            'role' => $role4->name,
+            'post_id' => '8',
+            'dept_id' => '1',
+            'is_active' => 1
+        ]);
+        $role4->givePermissionTo($registrarPermissions);
+        $registrar->assignRole($role4);
+
+        
         // $user = \App\Models\User::create([
         //     'company_id'  => '0',
         //     'first_name'  => 'system',

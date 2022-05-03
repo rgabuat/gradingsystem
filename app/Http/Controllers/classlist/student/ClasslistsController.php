@@ -8,13 +8,24 @@ use Illuminate\Http\Request;
 Use App\Models\Courses;
 Use App\Models\Classlists;
 Use App\Models\Students;
+Use App\Models\User;
+use Spatie\Permission\Models\Permission;
 
 class ClasslistsController extends Controller
 {
 
     public function index()
     {
-        $classlists = Classlists::with('students','courses','subjects','semester')->groupBy('student_id')->get();
+        if(auth()->user()->hasRole(['admin','registrar','IT admin']))
+        {
+            $classlists = Classlists::with('students.course','courses','subjects','semester')->groupBy('student_id')->get();
+        }
+        else 
+        {
+            $id = 'SECTION2';
+            $classlists = Classlists::with('students.course','subjects','semester')->whereHas('subjects', function ($query) use ($id) { $query->where('subj_instructor',auth()->user()->id)->where('subj_section',$id); })->groupBy('student_id')->get();
+        }
+
         return view('classlists.ClasslistsList',compact('classlists'));
     }
 

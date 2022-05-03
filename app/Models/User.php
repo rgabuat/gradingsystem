@@ -32,10 +32,10 @@ class User extends Authenticatable
         'username',
         'password',
         'role',
-        'position',
-        'department',
+        'dept_id',
+        'post_id',
         'password',
-        'is_activated',
+        'is_active',
     ];
 
 

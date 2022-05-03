@@ -18,6 +18,7 @@ use App\Http\Controllers\classlist\student\StudentController;
 use App\Http\Controllers\subject\SubjectController;
 use App\Http\Controllers\member\MemberController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,6 +68,7 @@ Route::group(['middleware' => 'auth'],function(){
     });
 
     Route::group(['prefix' => 'student'],function(){
+        Route::get('/lists', [StudentController::class,'index'])->name('student/lists');
         Route::post('/store', [StudentController::class,'store'])->name('student/store');
         Route::post('/udpate/{sid}', [StudentController::class,'updated'])->name('student/update/{sid}');
     });
@@ -80,7 +82,6 @@ Route::group(['middleware' => 'auth'],function(){
     });
 
     Route::group(['prefix' => 'member'],function(){
-       
         Route::get('/lists', [MemberController::class,'index'])->name('member/lists');
         Route::get('/create', [MemberController::class,'create'])->name('member/create');
         Route::get('/view/subjects/{mid}',[MemberController::class,'get_subjects'])->name('member/view/subjects/{mid}');
@@ -91,19 +92,19 @@ Route::group(['middleware' => 'auth'],function(){
         Route::post('/udpate/{sid}', [MemberController::class,'updated'])->name('member/update/{sid}');
     });
     
+    Route::group(['prefix' => 'role'],function(){
+        Route::get('/lists', [RoleController::class,'index'])->name('role/lists');
+        // Route::post('/udpate/{sid}', [RoleController::class,'updated'])->name('student/update/{sid}');
+    });
 });
 
-
 Route::get('/clear', function() {
-
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
     Artisan::call('config:cache');
     Artisan::call('view:clear');
     Artisan::call('route:clear');
-
     return "Cleared!";
-
 });
 
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\member;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
 Use App\Models\Positions;
 Use App\Models\Departments;
 Use App\Models\User;
@@ -43,12 +45,48 @@ class MemberController extends Controller
         $positions = Positions::all();
         $departments = Departments::all();
         $roles = Role::all();
-        return view('member.MemberAdd',compact('positions','departments','positions','roles'));
+        $permissions = Permission::all();
+        return view('member.MemberAdd',compact('positions','departments','positions','roles','permissions'));
     }
 
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'user_id' => 'required|unique:users,user_id|min:4',
+            'first_name' => 'required|min:3',
+            'middle_name' => 'unique:users,middle_name',
+            'last_name' => 'required',
+            'gender' => 'required',
+            'email' => 'required|unique:users,email|email', 
+            'username' => 'required|unique:users,username|min:4',
+            'password' => 'required|confirmed',
+            'role' => 'required',
+            'post_id' => 'required',
+            'dept_id' => 'required',
+            'is_active' => 'required',
+        ]);
 
+        $member = User::create([
+            'user_id' => $request->user_id,
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'suffix' => $request->suffix,
+            'title' => $request->title,
+            'gender' => $request->gender,
+            'birthday' => $request->birthday,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'post_id' => $request->post_id,
+            'dept_id' => $request->dept_id,
+            'is_active' => $request->is_active
+        ]);
+        $role = $member->assignRole($request->role);
+        $role->syncPermissions($request->permissions);
+
+        return redirect()->back()->with('status','Member create success.');
     }
 
     public function edit($cid)

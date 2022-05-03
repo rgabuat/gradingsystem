@@ -5,7 +5,6 @@
       <img src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Login System</span>
     </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -162,6 +161,27 @@
                 </ul>
               </li>
             @endrole
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-users-cog"></i>
+                <p>
+                  Role Management
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @role('admin|system editor')
+                <li class="nav-item">
+                  <a href="{{ route('role/lists') }}" class="nav-link">
+                    <i class="pl-3 nav-icon fas fa-key"></i>
+                    <p class="pl-3">
+                      View All Roles
+                    </p>
+                  </a>
+                </li>
+                @endrole
+                </ul>
+              </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>

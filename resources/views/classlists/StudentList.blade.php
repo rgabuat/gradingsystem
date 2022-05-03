@@ -24,25 +24,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($classlists as $classlist)
                 <tr>
-                    <td>{{ $classlist['students'][0]['id']}}</td>
-                    <td>{{ $classlist['students'][0]['std_number']}}</td>
-                    <td>{{ $classlist['students'][0]['first_name']}}</td>
-                    <td>{{ $classlist['students'][0]['middle_name']}}</td>
-                    <td>{{ $classlist['students'][0]['last_name']}}</td>
-                    <td>{{ $classlist['students'][0]['course'][0]['crse_name']}}</td>
-                    <td>{{ $classlist['semester'][0]['semester_year']}}</td>
-                    <td>{{ $classlist['students'][0]['status']}}</td>
                     <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-expanded="false">
                         <span class="fas fa-align-right"></span>
                         </button>
                             <div class="dropdown-menu" role="menu" style="">
-                                <a class="dropdown-item" href="{{ url('Classlists/student/modify/'.$classlist['students'][0]['id']) }}"><span class="fas fa-pen mr-2"></span>Modify Profile</a>
-                                <a class="dropdown-item" href="{{ url('Classlists/student/subjects/'.$classlist['students'][0]['id']) }}"><span class="fas fa-swatchbook mr-2"></span>View Subjects</a>
-                                <a class="dropdown-item" href="{{ url('Classlists/student/course/'.$classlist['students'][0]['id']) }}"><span class="fas fa-graduation-cap mr-2"></span>Add Course</a>
+                                <a class="dropdown-item" href="{{ url('Classlists/student/modify/') }}"><span class="fas fa-pen mr-2"></span>Modify Profile</a>
+                                <a class="dropdown-item" href="{{ url('Classlists/student/subjects/') }}"><span class="fas fa-swatchbook mr-2"></span>View Subjects</a>
+                                <a class="dropdown-item" href="{{ url('Classlists/student/course/') }}"><span class="fas fa-graduation-cap mr-2"></span>Add Course</a>
                                 <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deactivate"><span class="fas fa-eye-slash mr-2"></span>Deactivate student</a>
                                 <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#activate"><span class="fas fa-eye mr-2"></span>Activate student</a>
                             </div>
@@ -90,7 +81,6 @@
                                 </div>
                             </div>
                         </div>
-                @endforeach
             </tbody>
         </table>
     </div>

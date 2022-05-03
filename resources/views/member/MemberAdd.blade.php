@@ -12,7 +12,7 @@
                         {{ session('status') }}
                     </div>
                 @endif
-            <form action="{{ route('subject/store') }}" method="post">
+            <form action="{{ route('member/store') }}" method="post">
                 @csrf
                 <div class="col-md-12">
                     <div class="form-group">
@@ -122,14 +122,29 @@
                   <div class="form-group">
                     <label for="role">Role</label>
                     <select name="role" class="form-control @error('role') is-invalid @enderror" id="role">
-                        <option value="">Select Department</option>
+                        <option value="">Select Role</option>
                         @foreach($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            <option  value="{{ $role->name }}" {{ old('role') == $role->name ? "selected" : "" }}>{{ $role->name }}</option>
                         @endforeach
                     </select>
                   </div>
                   <div>
                         @error('role')
+                            <span class="error invalid-feedback d-block"> {{ $message }}</span>
+                        @enderror
+                    </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="permissions">Permissions</label>
+                    <select name="permissions[]" multiple class="form-control @error('permissions') is-invalid @enderror" id="permissions">
+                        @foreach($permissions as $permission)
+                            <option   value="{{ $permission->name }}" {{ old('permissions') == $permission->name ? "selected" : "" }}>{{ $permission->name }}</option>
+                        @endforeach
+                    </select>
+                  </div>
+                  <div>
+                        @error('permissions')
                             <span class="error invalid-feedback d-block"> {{ $message }}</span>
                         @enderror
                     </div>
@@ -140,7 +155,7 @@
                     <select name="dept_id" class="form-control @error('dept_id') is-invalid @enderror" id="dept_id">
                         <option value="">Select Department</option>
                         @foreach($departments as $dept)
-                            <option value="{{ $dept->dept_id }}">{{ $dept->dept_name }}</option>
+                            <option  value="{{ $dept->id }}" {{ old('dept_id') == $dept->id ? "selected" : "" }}>{{ $dept->dept_name }}</option>
                         @endforeach
                     </select>
                   </div>
@@ -156,7 +171,7 @@
                     <select name="post_id" class="form-control @error('post_id') is-invalid @enderror" id="post_id">
                         <option value="">Select Position</option>
                         @foreach($positions as $post)
-                            <option value="{{ $post->id }}">{{ $post->post_name }}</option>
+                            <option  value="{{ $post->id }}" {{ old('post_id') == $post->id ? "selected" : "" }}>{{ $post->post_name }}</option>
                         @endforeach
                     </select>
                   </div>
@@ -171,7 +186,7 @@
                     <label for="is_active">Active Status</label>
                     <select name="is_active" class="form-control @error('is_active') is-invalid @enderror" id="is_active">
                         <option value="">Select Position</option>
-                        <option value="1">Active</option>
+                        <option selected value="1">Active</option>
                         <option value="0">Inactive</option>
                     </select>
                   </div>
