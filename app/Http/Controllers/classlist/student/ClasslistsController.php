@@ -40,6 +40,16 @@ class ClasslistsController extends Controller
         return view('classlists.ClasslistsImportClass');
     }
 
+    public function students()
+    {
+        $classlists = Classlists::pluck('student_id')->all();
+        $students = Students::whereNotIn('id',$classlists)->get();
+
+        dd($students);
+
+        return view('classlists.StudentList');
+    }
+
     public function store(Request $request)
     {
 

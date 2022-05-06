@@ -47,7 +47,7 @@
           @role('admin|system editor|system user')
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
                  Class Management
                 <i class="right fas fa-angle-left"></i>
@@ -72,10 +72,10 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="pl-3 nav-icon fas fa-search"></i>
+                <a href="{{ route('classlists/students') }}" class="nav-link">
+                  <i class="pl-3 nav-icon fas fa-users"></i>
                   <p class="pl-3">
-                    Modify Student
+                    Students
                   </p>
                 </a>
               </li>

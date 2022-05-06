@@ -65,6 +65,8 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('/student/modify/{sid}', [StudentController::class,'edit'])->name('Classlists/student/modify/{sid}');
         Route::get('/student/subjects/{id}', [StudentController::class,'get_subjects'])->name('Classlists/student/subjects/{id}');
         Route::get('/student/course/modify/{id}', [StudentController::class,'add_course'])->name('Classlists/student/course/{id}');
+        Route::get('/students', [ClasslistsController::class,'students'])->name('classlists/students');
+        Route::get('/enlist-student', [ClasslistsController::class,'enlist'])->name('classlists/enlist-student');
     });
 
     Route::group(['prefix' => 'student'],function(){
