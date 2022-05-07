@@ -5,10 +5,31 @@
 <div class="card">
     <div class="card-body">
     <h2 class="text-center">Class Lists Records</h2>
-    <form action="{{ route('Classlists/lists/search') }}" method="get" class="form-inline">
-        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    @if (session('status'))
+        <div class="bg-success text-center text-white py-2 mb-3">
+            {{ session('status') }}
+        </div>
+    @endif
+    <div class="row">
+        <div class="col-md-6">
+            <form action="{{ route('Classlists/lists/search') }}" method="get" class="form-inline">
+                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form action="{{ route('Classlists/lists/filter') }}" class="form-inline">
+                <label for="filter" class="pr-3">Filter Class by Section:</label>
+                <select name="section" class="custom-select mr-2" id="sections">
+                    <option value="">Select Section</option>
+                    @foreach($subj_section as $sect)
+                        <option value="{{ $sect['subj_section'] }}">{{ $sect['subj_section'] }}</option>
+                    @endforeach
+                </select>
+                <input type="submit" value="filter" class="btn btn-success my-2">
+            </form>
+        </div>
+    </div>
     <table class="table">
             <thead>
                 <tr>

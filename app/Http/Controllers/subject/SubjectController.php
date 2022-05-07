@@ -12,7 +12,7 @@ class SubjectController extends Controller
 {
     public function index()
     {
-        $subjects = Subjects::with('instructors')->get();
+        $subjects = Subjects::with('instructor')->get();
         return view('subjects.SubjectLists',compact('subjects'));
     }
 
@@ -25,9 +25,10 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'subj_name' => 'required|unique:subjects,subj_name|max:255',
-            'subj_code' => 'required|unique:subjects,subj_code|max:255',
+            'subj_name' => 'required|max:255',
+            'subj_code' => 'required|max:255',
             'subj_units' => 'required|max:255',
+            'subj_section' => 'required|max:255|unique:subjects,subj_section',
             'subj_instructor' => 'required',
         ]);
 

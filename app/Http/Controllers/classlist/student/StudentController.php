@@ -73,7 +73,7 @@ class StudentController extends Controller
 
     public function get_subjects($sid)
     {
-        $subjects = Classlists::with('subjects.instructors')->where('student_id',$sid)->get();
+        $subjects = Classlists::with('subjects.instructor')->where('student_id',$sid)->get();
         $subs = Subjects::all();
         // $std_subjects = Classlists::with('students','courses','subjects','semester')->whereHas('subjects', function ($query)  { $query->where('subj_instructor','1')->join('users','users.id','=','subjects.subj_instructor'); })->where('student_id',$sid)->get();
         return view('classlists.ClasslistsListSubjects',compact('subjects','subs'));

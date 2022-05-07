@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 
 Use App\Models\User;
+Use App\Models\Semesters;
 
 class Subjects extends Model
 {
@@ -24,8 +25,12 @@ class Subjects extends Model
         'sem_id',
     ];
 
-    public function instructors(){
+    public function instructor(){
         return $this->hasMany(User::class,'id','subj_instructor');
+    }
+
+    public function semester(){
+        return $this->hasMany(Semesters::class,'id','sem_id');
     }
 
 }

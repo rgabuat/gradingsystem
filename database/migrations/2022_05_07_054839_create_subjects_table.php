@@ -19,11 +19,10 @@ class CreateSubjectsTable extends Migration
             $table->string('subj_code');
             $table->text('subj_description');
             $table->string('subj_units');
-            $table->text('subj_type');
-            $table->text('subj_section');
-            $table->text('subj_instructor');
+            $table->string('subj_type');
+            $table->string('subj_section');
+            $table->foreignId('subj_instructor')->nullable()->constrained('users');
             $table->foreignId('sem_id')->nullable()->constrained('semesters');
-            //references('id')->on('semesters');
             $table->timestamps();
         });
     }

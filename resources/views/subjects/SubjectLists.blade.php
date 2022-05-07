@@ -7,16 +7,15 @@
     <div class="card-body">
    
     <h2 class="text-center">Subjects</h2>
-    <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success">ADD SUBJECT</a>
+    <a href="{{ route('subject/create') }}" data-target class="btn btn-success">ADD SUBJECT</a>
     <table class="table">
             <thead>
                 <tr>
                     <th>S/N</th>
                     <th>Name</th>
                     <th>Code</th>
-                    <th>Subject Description</th>
+                    <th>Description</th>
                     <th>Units</th>
-                    <th>Type</th>
                     <th>Section</th>
                     <th>Instructor</th>
                     <th>Action</th>
@@ -31,9 +30,8 @@
                     <td>{{ $subject['subj_code']}}</td>
                     <td>{{ $subject['subj_description']}}</td>
                     <td>{{ $subject['subj_units']}}</td>
-                    <td>{{ $subject['subj_type']}}</td>
                     <td>{{ $subject['subj_section']}}</td>
-                    <td>{{ $subjects[0]['instructors'][0]['first_name'] }} {{ $subjects[0]['instructors'][0]['last_name'] }} </td>
+                    <td>{{ $subject['instructor'][0]['first_name'] }} {{ $subject['instructor'][0]['last_name'] }} </td>
                     <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-expanded="false">

@@ -72,7 +72,7 @@
                     </div>
               </div>
            <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block mb-3">ADD STUDENT</button>
+                <button type="submit" class="btn btn-primary btn-block mb-3">Update Student Details</button>
            </div>
           </form>
         </div>

@@ -87,13 +87,13 @@ class DatabaseSeeder extends Seeder
 
     
         $crse1 = \App\Models\Courses::create([
-            'crse_name'  => 'crse1', 
+            'crse_name'  => 'BSBA', 
         ]);
         $crse2 = \App\Models\Courses::create([
-            'crse_name'  => 'crse2', 
+            'crse_name'  => 'BSIT', 
         ]);
         $crse3 = \App\Models\Courses::create([
-            'crse_name'  => 'crse3', 
+            'crse_name'  => 'BSCS', 
         ]);
 
         $dept1 = \App\Models\Departments::create([
@@ -157,101 +157,6 @@ class DatabaseSeeder extends Seeder
             'semester_year'  => 'SY-2022-2022-2', 
         ]);
 
-        $subj1 = \App\Models\Subjects::create([
-            'subj_name'  => 'Reading Phil History', 
-            'subj_code'  => 'GE102', 
-            'subj_description'  => 'Sample Desc', 
-            'subj_units'  => '3', 
-            'subj_type'  => 'GENED', 
-            'subj_section'  => 'SECTION1', 
-            'subj_instructor'  => '1', 
-            'sem_id'  => '1',
-        ]);
-
-        $subj2 = \App\Models\Subjects::create([
-            'subj_name'  => 'Networking Fundamentals', 
-            'subj_code'  => 'NET101', 
-            'subj_description'  => 'Sample Desc', 
-            'subj_units'  => '3', 
-            'subj_type'  => 'GENED', 
-            'subj_section'  => 'SECTION1', 
-            'subj_instructor'  => '1', 
-            'sem_id'  => '1',
-        ]);
-
-        $subj3 = \App\Models\Subjects::create([
-            'subj_name'  => 'Wika at Kultura', 
-            'subj_code'  => 'FIL1', 
-            'subj_description'  => 'Sample Desc', 
-            'subj_units'  => '3', 
-            'subj_type'  => 'GENED', 
-            'subj_section'  => 'SECTION1', 
-            'subj_instructor'  => '1', 
-            'sem_id'  => '1',
-        ]);
-
-        $std1 = \App\Models\Students::create([
-            'std_number'  => '201010170',
-            'first_name'  => 'Clarissa',
-            'middle_name'  => 'M',
-            'last_name'  => 'Dela Cruz',
-            'course_id'  => '1', 
-            'status' => 1
-        ]);
-
-        $std2 = \App\Models\Students::create([
-            'std_number'  => '201110412',
-            'first_name'  => 'Cedric',
-            'middle_name'  => 'M',
-            'last_name'  => '2',
-            'course_id'  => '1', 
-            'status' => 1
-        ]);
-
-        $std3 = \App\Models\Students::create([
-            'std_number'  => '201110412',
-            'first_name'  => 'Cedric',
-            'middle_name'  => 'M',
-            'last_name'  => '2',
-            'course_id'  => '1', 
-            'status' => 1
-        ]);
-
-        $clist1 = \App\Models\Classlists::create([
-            'student_id'  => '1',
-            'subject_id'  => '1',
-            'sem_id'  => '1'
-        ]);
-
-        $clist2 = \App\Models\Classlists::create([
-            'student_id'  => '1',
-            'subject_id'  => '2',
-            'sem_id'  => '1'
-        ]);
-
-        $clist3 = \App\Models\Classlists::create([
-            'student_id'  => '1',
-            'subject_id'  => '3',
-            'sem_id'  => '1'
-        ]);
-
-        $clist4 = \App\Models\Classlists::create([
-            'student_id'  => '2',
-            'subject_id'  => '1',
-            'sem_id'  => '1'
-        ]);
-
-        $clist5 = \App\Models\Classlists::create([
-            'student_id'  => '2',
-            'subject_id'  => '2',
-            'sem_id'  => '1'
-        ]);
-
-        $clist5 = \App\Models\Classlists::create([
-            'student_id'  => '2',
-            'subject_id'  => '3',
-            'sem_id'  => '1'
-        ]);
 
         $admin = \App\Models\User::create([
             'user_id' => 'administrator',
@@ -313,6 +218,104 @@ class DatabaseSeeder extends Seeder
         ]);
         $role4->givePermissionTo($registrarPermissions);
         $registrar->assignRole($role4);
+
+        $subj1 = \App\Models\Subjects::create([
+            'subj_name'  => 'Reading Phil History', 
+            'subj_code'  => 'GE102', 
+            'subj_description'  => 'Sample Desc', 
+            'subj_units'  => '3', 
+            'subj_type'  => 'GENED', 
+            'subj_section'  => 'GE102', 
+            'subj_instructor'  => '1', 
+            'sem_id'  => '1',
+        ]);
+
+        $subj2 = \App\Models\Subjects::create([
+            'subj_name'  => 'Networking Fundamentals', 
+            'subj_code'  => 'NET101', 
+            'subj_description'  => 'Sample Desc', 
+            'subj_units'  => '3', 
+            'subj_type'  => 'GENED', 
+            'subj_section'  => 'NET101', 
+            'subj_instructor'  => '2', 
+            'sem_id'  => '1',
+        ]);
+
+        $subj3 = \App\Models\Subjects::create([
+            'subj_name'  => 'Wika at Kultura', 
+            'subj_code'  => 'FIL1', 
+            'subj_description'  => 'Sample Desc', 
+            'subj_units'  => '3', 
+            'subj_type'  => 'GENED', 
+            'subj_section'  => 'FIL1-A', 
+            'subj_instructor'  => '1', 
+            'sem_id'  => '1',
+        ]);
+
+        $std1 = \App\Models\Students::create([
+            'std_number'  => '201010170',
+            'first_name'  => 'Clarissa',
+            'middle_name'  => 'M',
+            'last_name'  => 'Dela Cruz',
+            'course_id'  => '1', 
+            'status' => 1
+        ]);
+
+        $std2 = \App\Models\Students::create([
+            'std_number'  => '201110412',
+            'first_name'  => 'Mira',
+            'middle_name'  => 'M',
+            'last_name'  => 'Malinaw',
+            'course_id'  => '1', 
+            'status' => 1
+        ]);
+
+        $std3 = \App\Models\Students::create([
+            'std_number'  => '201110412',
+            'first_name'  => 'Cedric',
+            'middle_name'  => 'M',
+            'last_name'  => 'Malabo',
+            'course_id'  => '1', 
+            'status' => 1
+        ]);
+
+        $clist1 = \App\Models\Classlists::create([
+            'student_id'  => '1',
+            'subject_id'  => '1',
+            'sem_id'  => '1'
+        ]);
+
+        $clist2 = \App\Models\Classlists::create([
+            'student_id'  => '1',
+            'subject_id'  => '2',
+            'sem_id'  => '1'
+        ]);
+
+        $clist3 = \App\Models\Classlists::create([
+            'student_id'  => '1',
+            'subject_id'  => '3',
+            'sem_id'  => '1'
+        ]);
+
+        $clist4 = \App\Models\Classlists::create([
+            'student_id'  => '2',
+            'subject_id'  => '1',
+            'sem_id'  => '1'
+        ]);
+
+        $clist5 = \App\Models\Classlists::create([
+            'student_id'  => '2',
+            'subject_id'  => '2',
+            'sem_id'  => '1'
+        ]);
+
+        $clist5 = \App\Models\Classlists::create([
+            'student_id'  => '2',
+            'subject_id'  => '3',
+            'sem_id'  => '1'
+        ]);
+
+        
 
         
         // $user = \App\Models\User::create([

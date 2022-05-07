@@ -44,7 +44,7 @@
               </p>
             </a>
           </li>
-          @role('admin|system editor|system user')
+          @role('admin|faculty|registrar')
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -54,7 +54,17 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-            @role('admin|system|editor')
+            @role('faculty')
+              <li class="nav-item">
+                <a href="{{ route('classlists/lists') }}" class="nav-link">
+                  <i class="pl-3 nav-icon fas fa-users"></i>
+                  <p class="pl-3">
+                    My Class
+                  </p>
+                </a>
+              </li>
+            @endrole
+            @role('admin|registrar')
               <li class="nav-item">
                 <a href="{{ route('classlists/lists') }}" class="nav-link">
                   <i class="pl-3 nav-icon fas fa-eye"></i>
@@ -161,6 +171,7 @@
                 </ul>
               </li>
             @endrole
+            @role('admin|system editor')
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-users-cog"></i>
@@ -170,7 +181,6 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                @role('admin|system editor')
                 <li class="nav-item">
                   <a href="{{ route('role/lists') }}" class="nav-link">
                     <i class="pl-3 nav-icon fas fa-key"></i>
@@ -179,9 +189,9 @@
                     </p>
                   </a>
                 </li>
-                @endrole
                 </ul>
               </li>
+              @endrole
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>

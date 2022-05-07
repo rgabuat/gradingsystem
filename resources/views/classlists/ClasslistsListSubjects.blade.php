@@ -5,7 +5,11 @@
 <div class="table-responsive-sm py-3">
 <div class="card">
     <div class="card-body">
-   
+        @if (session('status'))
+            <div class="bg-success text-center text-white py-2 mb-3">
+                {{ session('status') }}
+            </div>
+        @endif
     <h2 class="text-center">Subjects</h2>
     <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success">ADD SUBJECT</a>
     <table class="table">
@@ -34,7 +38,7 @@
                     <td>{{ $subject['subjects'][0]['subj_units']}}</td>
                     <td>{{ $subject['subjects'][0]['subj_type']}}</td>
                     <td>{{ $subject['subjects'][0]['subj_section']}}</td>
-                    <td>{{ $subject['subjects'][0]['instructors'][0]['first_name']}} {{ $subject['subjects'][0]['instructors'][0]['last_name']}}</td>
+                    <td>{{ $subject['subjects'][0]['instructor'][0]['first_name']}} {{ $subject['subjects'][0]['instructor'][0]['last_name']}}</td>
                     <td>{{ $subject['subjects'][0]['sem_id']}}</td>
                     <td>
                     <div class="btn-group">

@@ -54,18 +54,18 @@
                             <span class="error invalid-feedback d-block"> {{ $message }}</span>
                         @enderror
               </div>
-              <div class="col-md-12">
+              <!-- <div class="col-md-12">
                   <div class="form-group">
-                    <label for="subj_type">Subject Units</label>
+                    <label for="subj_type">Subject Type</label>
                     <input type="text" name="subj_type" class="form-control @error('subj_type') is-invalid @enderror" value="{{ old('subj_type') }}" placeholder="">
                   </div>
                     @error('subj_type')
                         <span class="error invalid-feedback d-block"> {{ $message }}</span>
                     @enderror
-              </div>
+              </div> -->
               <div class="col-md-12">
                   <div class="form-group">
-                    <label for="subj_section">Subject Units</label>
+                    <label for="subj_section">Subject Secition</label>
                     <input type="text" name="subj_section" class="form-control @error('subj_section') is-invalid @enderror" value="{{ old('subj_section') }}" placeholder="">
                   </div>
                     @error('subj_section')
