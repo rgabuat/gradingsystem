@@ -79,6 +79,20 @@ class ClasslistsController extends Controller
         return redirect('/Classlists/lists')->with('status','New Student added to Classlist');
     }
 
+    public function myClass()
+    {
+        $classes = Classlists::with('subjects')->get();
+        $subj_section = Subjects::where('subj_instructor',auth()->user()->id)->get();
+        return view('classlists.instructor.InstructorsClass',compact('subj_section'));
+    }
+
+
+    public function classStudents($cid)
+    {
+        $classStudents = Classlists::with('students.course')->where('subject_id',$cid)->get();
+        return view('classlists.instructor.InstructorsClassStudents',compact('classStudents'));
+    }
+
     public function store(Request $request)
     {
 

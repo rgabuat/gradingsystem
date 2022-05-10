@@ -18,7 +18,6 @@
           </div>
         </a>
       </div>
-
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -56,7 +55,7 @@
             <ul class="nav nav-treeview">
             @role('faculty')
               <li class="nav-item">
-                <a href="{{ route('classlists/lists') }}" class="nav-link">
+                <a href="{{ route('Classlists/my-class') }}" class="nav-link">
                   <i class="pl-3 nav-icon fas fa-users"></i>
                   <p class="pl-3">
                     My Class
@@ -101,6 +100,25 @@
             </ul>
           </li>
           @endrole
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-cogs"></i>
+                <p>
+                  Grading Setup
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('role/lists') }}" class="nav-link">
+                    <i class="pl-3 nav-icon fas fa-th-large"></i>
+                    <p class="pl-3">
+                      Create Category
+                    </p>
+                  </a>
+                </li>
+                </ul>
+              </li>
           @role('admin|system editor|company admin')
             <li class="nav-item">
               <a href="#" class="nav-link">

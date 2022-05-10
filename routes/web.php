@@ -70,6 +70,13 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('/student/{sid}/add-subject', [ClasslistsController::class,'add_subjects'])->name('classlists/student/{sid}/add-subject');
         Route::post('/student/{sid}/add-subject', [ClasslistsController::class,'store_subjects'])->name('classlists/student/{sid}/add-subject');
         Route::post('/student/{sid}/add-subject', [ClasslistsController::class,'store_subjects'])->name('classlists/student/{sid}/add-subject');
+
+        //for instructor role only
+        Route::group(['middleware' => ['role:faculty']], function () {
+            Route::get('/my-class', [ClasslistsController::class,'myClass'])->name('Classlists/my-class');
+            Route::get('/my-class/{cid}/students', [ClasslistsController::class,'classStudents'])->name('Classlists/my-class/{cid}/students');
+        });
+
     });
 
     Route::group(['prefix' => 'student'],function(){
