@@ -23,25 +23,57 @@
                 <table class="table mb-0">
                     <thead>
                         <tr>
-                            <th>Student</th>
+                            <th rowspan="2">Student</th>
                             @if(!$grade_item->isEmpty())
-                                @foreach($grade_item as $item)
-                                    <th>{{ $item['item_name']}} <a href="javascript:void(0);" data-toggle="modal" data-target="#grading_grades{{ $item['id']}}"><span class="fas fa-pen ml-2 text-danger"></span></a></th>
+                                @foreach($category as $cat)
+                                    @foreach($grade_item as $item)
+                                        @if($item['cat_id'] == $cat['id'])
+                                            <th colspan="">{{ $cat['cat_name']}}</th>
+                                        @endif
+                                    @endforeach
+                                    @php 
+                                        break
+                                    @endphp
                                 @endforeach
                             @else
                             <th>No Grading Item Added</th>
                             @endif
                         </tr>
+                        <tr>
+                            @foreach($grade_item as $item)
+                               @foreach($category as $cat)
+                                    @if($item['cat'][0]['cat_name'] == $cat['cat_name'])
+                                        <th class="text-center">{{ $item['item_name']}} <a href="javascript:void(0);" data-toggle="modal" data-target="#grading_grades{{ $item['id']}}"><span class="fas fa-pen ml-2 text-danger"></span></a> <a href="javascript:void(0);" data-toggle="modal" data-target="#grading_item_del{{ $item['id']}}"><span class="fas fa-trash ml-2 text-danger"></span></a></th>
+                                    @endif
+                               @endforeach  
+                            @endforeach
+                        </tr>
                     </thead>
                     <tbody>
                         @php($i=0)
+                        @php($count=0)
                         @foreach($classStudents as $class)
                         <tr>
                             <td style="width:20%">{{ $class['students'][0]['std_number'] }} {{ $class['students'][0]['first_name'] }} {{ $class['students'][0]['middle_name'] }}</td>
                             @if(!$grade_item->isEmpty())
-                                    @foreach($grade_item as $item)
-                                        
-                                    @endforeach
+                                @foreach($grade_item as $item)
+                                <td>
+                                    <form action="{{ route('grading-setup/grade_update')}}" method="post" >
+                                        @csrf
+                                        @foreach($grading as $grade)
+                                            @if($grade['item_id'] == $item['id'] && $grade['std_id'] == $class['students'][0]['id']  )
+                                            <div class="form-inline">
+                                                <input type="hidden" name="item_id" value="{{ $item['id']}}">
+                                                <input type="hidden" name="std_id" value="{{ $class['students'][0]['id']}}">
+                                                <input type="number" name="grade" value="{{ $grade['grade']}}" class="form-control @error('grade') is-invalid @enderror" max="{{ $item['max_grade'] }}"><span><b>/{{ $item['max_grade'] }}</b></span>
+                                                <input type="submit" class="btn btn-primary" value="Input Grade">
+                                            </div>
+                                            @endif
+                                        @endforeach
+                                        <input type="hidden" name="std_no[]" value="{{ $count++}}">
+                                    </form>
+                                </td>
+                                @endforeach
                             @else
                                 <td>No Grading Item Added</td>
                             @endif
@@ -95,8 +127,30 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                        
                                     <input type="submit" class="btn btn-primary" value="Input Grade">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- grading_item_del -->
+                 <div class="modal fade" id="grading_item_del{{ $item['id']}}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="grading_item_del">Input Grade</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('grading-setup/grading_item_del')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="item_id" value="{{ $item['id']}}">
+                                    <input type="hidden" name="subj_id" value="{{ Request::segment(3) }}">
+                                    <p>Delete Grading Item <span>{{ $item['item_name']}}</span> </p>
+                                    <input type="submit" class="btn btn-primary" value="Remove Item">
                                 </form>
                             </div>
                         </div>
@@ -156,7 +210,10 @@
                         <div class="modal-body">
                             <form action="{{ route('grading-setup/grade_item_store')}}" method="post">
                                 @csrf
-                                <input type="hidden" name="subj_id" value="{{ Request::segment(3) }}">
+                                    <input type="hidden" name="subj_id" value="{{ Request::segment(3) }}">
+                                @foreach($classStudents as $class)
+                                    <input type="hidden" name="std_id[]" value="{{ $class['students'][0]['id'] }}">
+                                @endforeach
                                 <div class="form-group">
                                     <label for="cat_name">Item Name<span class="text-danger">*</span></label>
                                     <input type="text" name="item_name" value="" class="form-control @error('item_name') is-invalid @enderror" value="{{ old('item_name') }}">

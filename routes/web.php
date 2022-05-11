@@ -87,6 +87,8 @@ Route::group(['middleware' => 'auth'],function(){
         Route::post('/store', [GradebookController::class,'store'])->name('grading-setup/store');
         Route::post('/grade_item_store', [GradebookController::class,'grade_item_store'])->name('grading-setup/grade_item_store');
         Route::post('/grade_store', [GradebookController::class,'grade_store'])->name('grading-setup/grade_store');
+        Route::post('/grade_update', [GradebookController::class,'grade_update'])->name('grading-setup/grade_update');
+        Route::post('/grading_item_del', [GradebookController::class,'grading_item_del'])->name('grading-setup/grading_item_del');
     });
 
     Route::group(['prefix' => 'student'],function(){

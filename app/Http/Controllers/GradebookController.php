@@ -53,6 +53,14 @@ class GradebookController extends Controller
 
         if($grade_item)
         {
+            foreach($request->std_id as $std)
+            {
+                $grade_grade = GradeGrades::create([
+                    'item_id' => $grade_item['id'],
+                    'std_id' => $std,
+                    'grade' => 0,
+                ]);
+            }
             return redirect()->back()->with('status','New Grade Item Created');
         }
     }
@@ -77,6 +85,26 @@ class GradebookController extends Controller
         if($grade_grade)
         {
             return redirect()->back()->with('status','Item has been Graded');
+        }
+    }
+
+    public function grading_item_del(Request $request)
+    {
+        $grading_item_delete = GradeItem::where('subj_id',$request->subj_id)->where('id',$request->item_id)->delete();
+
+        if($grading_item_delete)
+        {
+            
+        }
+    }
+    
+    public function grade_update(Request $request)
+    {
+        $response = GradeGrades::where('item_id',$request->item_id)->where('std_id',$request->std_id)->update(['grade' => $request->grade]);
+
+        if($response)
+        {
+            return redirect()->back()->with('status','Grade Successfully Updated');
         }
     }
 }

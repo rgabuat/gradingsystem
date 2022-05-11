@@ -95,12 +95,10 @@ class ClasslistsController extends Controller
         $classStudents = Classlists::with('students.course')->where('subject_id',$cid)->get();
         $category = Category::where('subj_id',$cid)->get();
 
-        $grade_item = GradeItem::where('subj_id',$cid)->orderBy('cat_id','ASC')->get();
+        $grade_item = GradeItem::with('cat')->where('subj_id',$cid)->orderBy('cat_id','DESC')->get();
 
         $grading = GradeGrades::with('gradeItem')->whereHas('gradeItem', function ($query) use ($cid) { $query->where('subj_id',$cid); })->get();
 
-        // dd($grading[0]['gradeItem'][0]['cat_id']);
-        // $grade_grades = GradeGrades::where('')
         return view('classlists.instructor.InstructorsClassStudents',compact('classStudents','category','grade_item','grading'));
     }
 
