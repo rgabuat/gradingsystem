@@ -19,6 +19,7 @@ use App\Http\Controllers\subject\SubjectController;
 use App\Http\Controllers\member\MemberController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\GradebookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,6 +78,15 @@ Route::group(['middleware' => 'auth'],function(){
             Route::get('/my-class/{cid}/students', [ClasslistsController::class,'classStudents'])->name('Classlists/my-class/{cid}/students');
         });
 
+        
+
+    });
+
+    Route::group(['prefix' => 'grading-setup'],function(){
+        Route::get('/category', [GradebookController::class,'category'])->name('grading-setup/category');
+        Route::post('/store', [GradebookController::class,'store'])->name('grading-setup/store');
+        Route::post('/grade_item_store', [GradebookController::class,'grade_item_store'])->name('grading-setup/grade_item_store');
+        Route::post('/grade_store', [GradebookController::class,'grade_store'])->name('grading-setup/grade_store');
     });
 
     Route::group(['prefix' => 'student'],function(){

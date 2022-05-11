@@ -10,6 +10,9 @@ Use App\Models\Classlists;
 Use App\Models\Students;
 Use App\Models\User;
 Use App\Models\Subjects;
+Use App\Models\Category;
+Use App\Models\GradeItem;
+Use App\Models\GradeGrades;
 use Spatie\Permission\Models\Permission;
 
 class ClasslistsController extends Controller
@@ -90,7 +93,15 @@ class ClasslistsController extends Controller
     public function classStudents($cid)
     {
         $classStudents = Classlists::with('students.course')->where('subject_id',$cid)->get();
-        return view('classlists.instructor.InstructorsClassStudents',compact('classStudents'));
+        $category = Category::where('subj_id',$cid)->get();
+
+        $grade_item = GradeItem::where('subj_id',$cid)->orderBy('cat_id','ASC')->get();
+
+        $grading = GradeGrades::with('gradeItem')->whereHas('gradeItem', function ($query) use ($cid) { $query->where('subj_id',$cid); })->get();
+
+        // dd($grading[0]['gradeItem'][0]['cat_id']);
+        // $grade_grades = GradeGrades::where('')
+        return view('classlists.instructor.InstructorsClassStudents',compact('classStudents','category','grade_item','grading'));
     }
 
     public function store(Request $request)

@@ -110,10 +110,10 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('role/lists') }}" class="nav-link">
+                  <a href="{{ route('grading-setup/category') }}" class="nav-link">
                     <i class="pl-3 nav-icon fas fa-th-large"></i>
                     <p class="pl-3">
-                      Create Category
+                      Category
                     </p>
                   </a>
                 </li>

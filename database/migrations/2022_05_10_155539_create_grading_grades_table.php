@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryTable extends Migration
+class CreateGradingGradesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('category', function (Blueprint $table) {
+        Schema::create('grading_grades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subj_id')->nullable()->constrained('subjects');
-            $table->string('cat_name');
-            $table->integer('weight');
+            $table->foreignId('item_id')->nullable()->constrained('grading_item');
+            $table->foreignId('std_id')->nullable()->constrained('students');
+            $table->decimal('grade',2, 2);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('grading_grades');
     }
 }
