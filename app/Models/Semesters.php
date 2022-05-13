@@ -12,5 +12,7 @@ class Semesters extends Model
     protected $table = 'semesters';
     protected $fillable = [
         'semester_year',
+        'sem_title',
+        'sem_status',
     ];
 }

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css') }}">
+  
 
   <style>
     .dropdown-menu
@@ -98,5 +99,11 @@
 <script src="{{ asset('vendors/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- <script src="{{ asset('vendors/dist/js/pages/dashboard3.js') }}"></script> -->
+<script>
+  $(".chb").change(function(){
+      $(".chb").prop('checked',false);
+      $(this).prop('checked',true);
+      });
+  </script>
 </body>
 </html>

@@ -100,25 +100,6 @@
             </ul>
           </li>
           @endrole
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-cogs"></i>
-                <p>
-                  Grading Setup
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('grading-setup/category') }}" class="nav-link">
-                    <i class="pl-3 nav-icon fas fa-th-large"></i>
-                    <p class="pl-3">
-                      Category
-                    </p>
-                  </a>
-                </li>
-                </ul>
-              </li>
           @role('admin|system editor|company admin')
             <li class="nav-item">
               <a href="#" class="nav-link">
@@ -210,6 +191,25 @@
                 </ul>
               </li>
               @endrole
+              <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-cogs"></i>
+                <p>
+                  Settings
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('settings/semester') }}" class="nav-link">
+                    <i class="pl-3 nav-icon fas fa-calendar"></i>
+                    <p class="pl-3">
+                      Set Semester
+                    </p>
+                  </a>
+                </li>
+                </ul>
+              </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>

@@ -20,6 +20,7 @@ use App\Http\Controllers\member\MemberController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\GradebookController;
+use App\Http\Controllers\SettingsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,6 +96,10 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('/lists', [StudentController::class,'index'])->name('student/lists');
         Route::post('/store', [StudentController::class,'store'])->name('student/store');
         Route::post('/udpate/{sid}', [StudentController::class,'updated'])->name('student/update/{sid}');
+    });
+
+    Route::group(['prefix' => 'settings'],function(){
+        Route::get('/semester', [SettingsController::class,'semester_index'])->name('settings/semester');
     });
 
     Route::group(['prefix' => 'subject'],function(){
