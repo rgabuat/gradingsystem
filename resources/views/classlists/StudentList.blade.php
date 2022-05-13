@@ -4,12 +4,12 @@
 <div class="table-responsive-sm py-3">
 <div class="card">
     <div class="card-body">
-    <h2 class="text-center">Class Lists Records</h2>
-    <form action="{{ route('Classlists/lists/search') }}" method="get" class="form-inline">
-        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <table class="table">
+        <h2 class="text-center text-primary"><b>New Student Lists</b></h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+    <table class="table" id="student_list">
             <thead>
                 <tr>
                     <th>S/N</th>

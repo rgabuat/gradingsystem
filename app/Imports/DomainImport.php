@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Domain;
+use App\Models\Students;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -18,15 +18,13 @@ class DomainImport implements ToModel,WithHeadingRow
     */
     public function model(array $row)
     {
-        return new Domain([
-            'domain' => $row['domain'],
-            'country' => $row['country'],
-            'domain_rating' => $row['domain_rating'],
-            'traffic' => $row['traffic'],
-            'ref_domain' => $row['ref_domain'],
-            'token_cost' => $row['token_cost'],
-            'remarks' => $row['remarks'],
-            'last_updated' => $row['last_updated'],
+        return new Students([
+            'std_number' => $row['std_number'],
+            'first_name' => $row['first_name'],
+            'middle_name' => $row['middle_name'],
+            'last_name' => $row['last_name'],
+            'status' => $row['status'],
+            'course_id' => $row['course_id'],
         ]);
     }
 }

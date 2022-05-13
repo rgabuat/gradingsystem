@@ -62,6 +62,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::group(['prefix' => 'Classlists'],function(){
         Route::get('/lists', [ClasslistsController::class,'index'])->name('classlists/lists');
         Route::get('/import-class', [ClasslistsController::class,'preview_import'])->name('classlists/import-class');
+        Route::post('/parse_import', [ClasslistsController::class,'parse'])->name('Classlists/parse_import');
+        Route::post('/import-students', [ClasslistsController::class,'import_students'])->name('Classlists/import-students');
         Route::get('/add-student', [ClasslistsController::class,'create'])->name('classlists/add-student');
         Route::get('lists/search/', [SearchController::class,'search'])->name('Classlists/lists/search');
         Route::get('lists/filter/', [SearchController::class,'search'])->name('Classlists/lists/filter');
@@ -71,6 +73,8 @@ Route::group(['middleware' => 'auth'],function(){
         Route::get('/students', [ClasslistsController::class,'students'])->name('classlists/students');
         Route::get('/student/{sid}/add-subject', [ClasslistsController::class,'add_subjects'])->name('classlists/student/{sid}/add-subject');
         Route::post('/student/{sid}/add-subject', [ClasslistsController::class,'store_subjects'])->name('classlists/student/{sid}/add-subject');
+        Route::post('/student/{sid}/add-subject', [ClasslistsController::class,'store_subjects'])->name('classlists/student/{sid}/add-subject');
+       
         Route::post('/student/{sid}/add-subject', [ClasslistsController::class,'store_subjects'])->name('classlists/student/{sid}/add-subject');
 
         //for instructor role only

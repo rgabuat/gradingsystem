@@ -4,40 +4,24 @@
 <div class="table-responsive-sm py-3">
 <div class="card">
     <div class="card-body">
-    <h2 class="text-center">Class Lists Records</h2>
+        <h2 class="text-center text-primary"><b>Class Lists Records</b></h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
     @if (session('status'))
         <div class="bg-success text-center text-white py-2 mb-3">
             {{ session('status') }}
         </div>
     @endif
-    <div class="row">
-        <div class="col-md-6">
-            <form action="{{ route('Classlists/lists/search') }}" method="get" class="form-inline">
-                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <form action="{{ route('Classlists/lists/filter') }}" class="form-inline">
-                <label for="filter" class="pr-3">Filter Class by Section:</label>
-                <select name="section" class="custom-select mr-2" id="sections">
-                    <option value="">Select Section</option>
-                    @foreach($subj_section as $sect)
-                        <option value="{{ $sect['subj_section'] }}">{{ $sect['subj_section'] }}</option>
-                    @endforeach
-                </select>
-                <input type="submit" value="filter" class="btn btn-success my-2">
-            </form>
-        </div>
-    </div>
-    <table class="table">
+    <table class="table" id="example1">
             <thead>
                 <tr>
                     <th>S/N</th>
                     <th>Student Id</th>
-                    <th>Student Firstname</th>
-                    <th>Student Middlename</th>
-                    <th>Student Lastname</th>
+                    <th>Firstname</th>
+                    <th>Middlename</th>
+                    <th>Lastname</th>
                     <th>Course</th>
                     <th>Semester</th>
                     <th>Status</th>
@@ -45,9 +29,10 @@
                 </tr>
             </thead>
             <tbody>
+                @php($count=1)
                 @foreach($classlists as $classlist)
                 <tr>
-                    <td>{{ $classlist['students'][0]['id']}}</td>
+                    <td>{{ $count++}}</td>
                     <td>{{ $classlist['students'][0]['std_number']}}</td>
                     <td>{{ $classlist['students'][0]['first_name']}}</td>
                     <td>{{ $classlist['students'][0]['middle_name']}}</td>

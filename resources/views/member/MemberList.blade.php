@@ -5,10 +5,13 @@
 <div class="table-responsive-sm py-3">
 <div class="card">
     <div class="card-body">
-   
-    <h2 class="text-center">All Members</h2>
-    <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success">ADD MEMBER</a>
-    <table class="table">
+        <h2 class="text-center text-primary" ><b>All Members</b></h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+    <a href="{{ route('member/create') }}" class="btn btn-success"> <span class="fas fa-user-plus mr-2"></span> ADD MEMBER</a>
+    <table class="table" id="member_lists">
             <thead>
                 <tr>
                     <th>S/N</th>

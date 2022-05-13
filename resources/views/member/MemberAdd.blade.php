@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="col-lg-6 py-3">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="text-center text-primary"><b>Create Member Account</b></h2>
+        </div>
+    </div>
       <div class="card ">
         <div class="card-body ">
-          <p class="login-box-msg h2 text-left px-0 text-center">Add New Member</p>
-          <h3>Member Details</h3>
+          <h3 class="text-center text-primary">Member Details</h3>
           <hr>
                 @if (session('status'))
                     <div class="bg-success text-center text-white py-2 mb-3">
@@ -16,7 +21,7 @@
                 @csrf
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="user_id">User ID</label>
+                        <label for="user_id">User ID <span class="text-danger">*</span></label>
                         <input type="text" name="user_id" class="form-control @error('user_id') is-invalid @enderror" value="{{ old('user_id') }}" placeholder="">
                     </div>
                     <div>
@@ -27,7 +32,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="first_name">Firstname</label>
+                        <label for="first_name">Firstname <span class="text-danger">*</span></label>
                         <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" placeholder="">
                     </div>
                     <div>
@@ -49,7 +54,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="last_name">Lastname</label>
+                        <label for="last_name">Lastname <span class="text-danger">*</span></label>
                         <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" placeholder="">
                     </div>
                     <div>
@@ -82,8 +87,8 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <select name="gender" class="form-control  @error('title') is-invalid @enderror" id="">
+                        <label for="gender">Gender <span class="text-danger">*</span></label>
+                        <select name="gender" class="form-control  @error('gender') is-invalid @enderror" id="">
                             <option value="">Select Gender</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
@@ -109,7 +114,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email <span class="text-danger">*</span></label>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="">
                     </div>
                     <div>
@@ -120,7 +125,7 @@
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="role">Role</label>
+                    <label for="role">Role <span class="text-danger">*</span></label>
                     <select name="role" class="form-control @error('role') is-invalid @enderror" id="role">
                         <option value="">Select Role</option>
                         @foreach($roles as $role)
@@ -134,7 +139,7 @@
                         @enderror
                     </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12 d-none">
                   <div class="form-group">
                     <label for="permissions">Permissions</label>
                     <select name="permissions[]" multiple class="form-control @error('permissions') is-invalid @enderror" id="permissions">
@@ -151,7 +156,7 @@
               </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="dept_id">Department</label>
+                    <label for="dept_id">Department <span class="text-danger">*</span></label>
                     <select name="dept_id" class="form-control @error('dept_id') is-invalid @enderror" id="dept_id">
                         <option value="">Select Department</option>
                         @foreach($departments as $dept)
@@ -200,7 +205,7 @@
               <hr>
               <div class="col-md-12">
                     <div class="form-group">
-                        <label for="username">Username</label>
+                        <label for="username">Username <span class="text-danger">*</span></label>
                         <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" placeholder="">
                     </div>
                     <div>
@@ -211,7 +216,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Password <span class="text-danger">*</span></label>
                         <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="" placeholder="">
                     </div>
                     <div>
@@ -222,7 +227,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="password_confirmation">Password Confirm</label>
+                        <label for="password_confirmation">Password Confirm <span class="text-danger">*</span></label>
                         <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" value="" placeholder="">
                     </div>
                     <div>

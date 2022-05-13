@@ -4,14 +4,18 @@
 <div class="table-responsive-sm py-3">
 <div class="card">
     <div class="card-body">
-    <h2 class="text-center">Roles Lists</h2>
+        <h2 class="text-center text-primary"><b>Roles and Permissions</b></h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
     <table class="table">
             <thead class="text-center">
                 <tr>
                     <th>S/N</th>
                     <th>Roles</th>
                     <th>Permissions</th>
-                    <th>Actions</th>
+                    <th class="d-none">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +37,7 @@
                             <p class="text-center">No Permission Assigned</p>
                         @endif
                         </td>
-                        <td>
+                        <td class="d-none">
                         <div class="btn-group">
                             <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-expanded="false">
                             <span class="fas fa-align-right"></span>

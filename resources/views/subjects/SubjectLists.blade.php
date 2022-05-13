@@ -5,10 +5,13 @@
 <div class="table-responsive-sm py-3">
 <div class="card">
     <div class="card-body">
-   
-    <h2 class="text-center">Subjects</h2>
-    <a href="{{ route('subject/create') }}" data-target class="btn btn-success">ADD SUBJECT</a>
-    <table class="table">
+        <h2 class="text-center text-primary"><b>Subjects</b></h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+    <a href="{{ route('subject/create') }}" data-target class="btn btn-success"> <span class="fas fa-book mr-2"></span> ADD SUBJECT</a>
+    <table class="table" id="subject_lists">
             <thead>
                 <tr>
                     <th>S/N</th>
