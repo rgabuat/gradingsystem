@@ -1,5 +1,5 @@
  <!-- Main Sidebar Container -->
- <aside class="main-sidebar sidebar-dark-primary elevation-4">
+ <aside class="main-sidebar sidebar-dark-primary elevation-4 position-fixed">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard')}}" class="brand-link">
       <img src="{{ asset('vendors/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -44,18 +44,18 @@
             </a>
           </li>
           @role('admin|faculty|registrar')
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{ Request::is('Classlists*') ? 'menu-is-opening menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('Classlists*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
                  Class Management
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview {{ Request::is('Classlists*') ? 'd-block' : '' }}">
             @role('faculty')
               <li class="nav-item">
-                <a href="{{ route('Classlists/my-class') }}" class="nav-link">
+                <a href="{{ route('Classlists/my-class') }}" class="nav-link {{ Request::is('Classlists/my-class*') ? 'active open' : '' }}">
                   <i class="pl-3 nav-icon fas fa-users"></i>
                   <p class="pl-3">
                     My Class
@@ -65,7 +65,7 @@
             @endrole
             @role('admin|registrar')
               <li class="nav-item">
-                <a href="{{ route('classlists/lists') }}" class="nav-link">
+                <a href="{{ route('classlists/lists') }}" class="nav-link {{ Request::is('Classlists/lists*') ? 'active open' : '' }}">
                   <i class="pl-3 nav-icon fas fa-eye"></i>
                   <p class="pl-3">
                     Class lists
@@ -73,7 +73,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('classlists/add-student') }}" class="nav-link">
+                <a href="{{ route('classlists/add-student') }}" class="nav-link {{ Request::is('Classlists/add-student*') ? 'active open' : '' }}">
                   <i class="pl-3 nav-icon fas fa-user-plus"></i>
                   <p class="pl-3">
                     Add Student
@@ -81,7 +81,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('classlists/students') }}" class="nav-link">
+                <a href="{{ route('classlists/students') }}" class="nav-link {{ Request::is('Classlists/students*') ? 'active open' : '' }}">
                   <i class="pl-3 nav-icon fas fa-users"></i>
                   <p class="pl-3">
                     Students
@@ -89,7 +89,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('classlists/import-class') }}" class="nav-link">
+                <a href="{{ route('classlists/import-class') }}" class="nav-link {{ Request::is('Classlists/import-class*') ? 'active open' : '' }}">
                   <i class="pl-3 nav-icon fas fa-file-import"></i>
                   <p class="pl-3">
                     Import Class
@@ -101,17 +101,17 @@
           </li>
           @endrole
           @role('admin|system editor|company admin')
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+            <li class="nav-item {{ Request::is('subject*') ? 'menu-is-opening menu-open' : '' }}">
+              <a href="#" class="nav-link {{ Request::is('subject*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-swatchbook"></i>
                 <p>
                   Subject Management
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview {{ Request::is('subject*') ? 'd-block' : '' }}">
               <li class="nav-item">
-                  <a href="{{ route('subject/lists') }}" class="nav-link">
+                  <a href="{{ route('subject/lists') }}" class="nav-link {{ Request::is('subject/lists*') ? 'active open' : '' }}">
                     <i class="pl-3 nav-icon fas fa-book"></i>
                     <p class="pl-3">
                       View All Subjects
@@ -119,7 +119,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('subject/create') }}" class="nav-link">
+                  <a href="{{ route('subject/create') }}" class="nav-link {{ Request::is('subject/create*') ? 'active open' : '' }}">
                     <i class="pl-3 nav-icon fas fa-book-medical"></i>
                     <p class="pl-3">
                       Encode Subject
@@ -127,7 +127,7 @@
                   </a>
                 </li>
                 @role('admin|system editor')
-                <li class="nav-item">
+                <li class="nav-item d-none">
                   <a href="#" class="nav-link">
                     <i class="pl-3 nav-icon fas fa-clipboard-list"></i>
                     <p class="pl-3">
@@ -140,18 +140,18 @@
             </li>
             @endrole
             @role('admin|system editor|company admin|company user|system user')
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+            <li class="nav-item {{ Request::is('member*') ? 'menu-is-opening menu-open' : '' }}">
+              <a href="#" class="nav-link {{ Request::is('member*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-tie"></i>
                 <p>
                   Member Management
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview {{ Request::is('member*') ? 'd-block' : '' }}">
                 @role('admin|system editor')
                 <li class="nav-item">
-                  <a href="{{ route('member/lists') }}" class="nav-link">
+                  <a href="{{ route('member/lists') }}" class="nav-link {{ Request::is('member/lists*') ? 'active open' : '' }}">
                     <i class="pl-3 nav-icon fas fa-eye"></i>
                     <p class="pl-3">
                       View All Members
@@ -159,7 +159,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('member/create') }}" class="nav-link">
+                  <a href="{{ route('member/create') }}" class="nav-link {{ Request::is('member/create*') ? 'active open' : '' }}">
                     <i class="pl-3 nav-icon fas fa-user-plus"></i>
                     <p class="pl-3">
                       Add New Members
@@ -171,17 +171,17 @@
               </li>
             @endrole
             @role('admin|system editor')
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+            <li class="nav-item {{ Request::is('role*') ? 'menu-is-opening menu-open' : '' }}">
+              <a href="#" class="nav-link {{ Request::is('role*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-users-cog"></i>
                 <p>
                   Role Management
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview {{ Request::is('role*') ? 'd-block' : '' }}">
                 <li class="nav-item">
-                  <a href="{{ route('role/lists') }}" class="nav-link">
+                  <a href="{{ route('role/lists') }}" class="nav-link {{ Request::is('role/lists*') ? 'active open' : '' }}">
                     <i class="pl-3 nav-icon fas fa-key"></i>
                     <p class="pl-3">
                       View All Roles
@@ -191,23 +191,25 @@
                 </ul>
               </li>
               @endrole
-              <li class="nav-item">
-              <a href="#" class="nav-link">
+              <li class="nav-item  {{ Request::is('settings*') ? 'menu-is-opening menu-open' : '' }}">
+              <a href="#" class="nav-link {{ Request::is('settings*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                   Settings
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview {{ Request::is('settings*') ? 'd-block' : '' }}">
+                @role('admin|registrar')
                 <li class="nav-item">
-                  <a href="{{ route('settings/semester') }}" class="nav-link">
+                  <a href="{{ route('settings/semester') }}" class="nav-link {{ Request::is('settings/semester*') ? 'active open' : '' }}">
                     <i class="pl-3 nav-icon fas fa-calendar"></i>
                     <p class="pl-3">
                       Set Semester
                     </p>
                   </a>
                 </li>
+                @endrole
                 </ul>
               </li>
           <li class="nav-item">

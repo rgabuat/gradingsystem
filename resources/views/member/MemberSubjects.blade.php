@@ -4,10 +4,13 @@
 <div class="table-responsive-sm py-3">
 <div class="card">
     <div class="card-body">
-   
-    <h2 class="text-center">Assigned Subjects</h2>
-    <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success">ASSIGN NEW SUBJECT</a>
-    <table class="table">
+    <h2 class="text-center text-primary"><b>Assigned Subjects</b></h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+    <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success d-none">ASSIGN NEW SUBJECT</a>
+    <table class="table" id="assigned_subjects">
             <thead>
                 <tr>
                     <th>S/N</th>
@@ -33,7 +36,7 @@
                         <span class="fas fa-align-right"></span>
                         </button>
                             <div class="dropdown-menu" role="menu" style="">
-                            <a class="dropdown-item" href="{{ url('/member/'.$subject['subj_instructor'].'/subject/'.$subject['id'].'/class') }}" ><span class="fas fa-users mr-2"></span>View Class</a>
+                            <a class="dropdown-item" href="{{ url('/member/'.$subject['subj_instructor'].'/subject/'.$subject['id'].'/class?subject='.$subject['subj_name'].'&subject_code='.$subject['subj_code']) }}" ><span class="fas fa-users mr-2"></span>View Class</a>
                                 <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deactivate"><span class="fas fa-times mr-2"></span>Remove Subject</a>
                                 <!-- <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#activate"><span class="fas fa-eye mr-2"></span>Activate student</a> -->
                             </div>

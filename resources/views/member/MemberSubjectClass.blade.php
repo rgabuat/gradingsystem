@@ -4,10 +4,15 @@
 <div class="table-responsive-sm py-3">
 <div class="card">
     <div class="card-body">
-   
-    <h2 class="text-center">Enrolled Students</h2>
-    <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success">ASSIGN NEW STUDENT</a>
-    <table class="table">
+        <h2 class="text-center text-primary"><b>Enlisted Students</b></h2>
+        <p class="text-center mb-0">Subject: <span><b>{{ Request::get('subject') }}</b></span></p>
+        <p class="text-center mb-0">Subject Code: <span><b>{{ Request::get('subject_code') }}</b></span></p>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+    <a href="javascript:void(0);" data-toggle="modal" data-target="#addSubject" data-target class="btn btn-success d-none">ASSIGN NEW STUDENT</a>
+    <table class="table" id="myClass">
             <thead>
                 <tr>
                     <th>S/N</th>
@@ -35,7 +40,7 @@
                         </button>
                             <div class="dropdown-menu" role="menu" style="">
                             <a class="dropdown-item" href="{{ url('/member/'.Request::segment(2) .'/subject/'.$class['students'][0]['id'].'/student/'.$class['id']) }}" ><span class="fas fa-award mr-2"></span>View Grades</a>
-                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deactivate"><span class="fas fa-times mr-2"></span>Remove Subject</a>
+                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deactivate"><span class="fas fa-times mr-2"></span>Remove Student</a>
                                 <!-- <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#activate"><span class="fas fa-eye mr-2"></span>Activate student</a> -->
                             </div>
                         </div>
@@ -45,7 +50,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deactivateModal">Unassign Subject</h5>
+                                        <h5 class="modal-title" id="deactivateModal">Remove Student</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
@@ -53,8 +58,9 @@
                                     <div class="modal-body">
                                         <form action="#" method="post">
                                             @csrf
-                                             <p>Unassign Subject</p>
-                                            <input type="submit" class="btn btn-danger" value="UNASSIGN SUBJECT">
+                                             <p>Remove Student <span class="text-primary">{{ $class['students'][0]['first_name'] }}</span> from Classlist</p>
+                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">CANCEL</button>
+                                            <input type="submit" class="btn btn-danger" value="SUBMIT">
                                         </form>
                                     </div>
                                 </div>

@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <form action="{{ route('Classlists/parse_import') }}" method="post" enctype="multipart/form-data">
                      @csrf
-                        <h4>Step 1</h4>
+                        <h4 class="text-success"><b>Step 1</b></h4>
                         <p>Click Upload File and Browse for CSV template</p>
                         <div class="form-group">
                             <input type="file" name="file" class="form-control @error('std_number') is-invalid @enderror">
@@ -39,7 +39,7 @@
                 @if(isset($param))
                 <form action="{{ route('Classlists/import-students') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <h4>Step 2</h4>
+                    <h4 class="text-success"><b>Step 2</b></h4>
                     
                     <p>Select for Section</p>
                     <div class="form-group">
@@ -72,7 +72,7 @@
     <div class="card">
         <div class="card-body">
         <h3 class="text-primary">CSV Contents</h3>
-        <table class="table">
+        <table class="table" id="csv_upload">
             <thead>
                 <tr>
                 @foreach($param['heading'] as $headings)

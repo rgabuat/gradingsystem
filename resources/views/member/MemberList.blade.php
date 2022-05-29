@@ -34,8 +34,11 @@
                         </button>
                             <div class="dropdown-menu" role="menu" style="">
                             <a class="dropdown-item" href="{{ url('member/view/subjects/'.$member['id']) }}" ><span class="fas fa-book mr-2"></span>View Subjects</a>
-                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deactivate"><span class="fas fa-eye-slash mr-2"></span>Deactivate student</a>
-                                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#activate"><span class="fas fa-eye mr-2"></span>Activate student</a>
+                                @if($member['is_active'] == 1)
+                                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deactivate"><span class="fas fa-eye-slash mr-2"></span>Deactivate Member</a>
+                                @else
+                                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#activate"><span class="fas fa-eye mr-2"></span>Activate Member</a>
+                                @endif
                             </div>
                         </div>
                     </td>
